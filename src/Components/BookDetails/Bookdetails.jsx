@@ -7,7 +7,7 @@ const Bookdetails = () => {
     const [readClicked, setReadClicked] = useState(false);
     const [wishlistClicked, setWishlistClicked] = useState(false);
     const handleReadClick = () => {
-        saveReadBookApplication(id)
+        saveReadBookApplication(idInt)
         if (!readClicked) {
             toast.success('added in read List');
             setReadClicked(true);
@@ -17,7 +17,7 @@ const Bookdetails = () => {
         }
     };
     const handleWishlistClick = () => {
-        saveBookApplication(id)
+        saveBookApplication(idInt)
         if (!wishlistClicked) {
             toast.success('added in wishlist');
             setWishlistClicked(true);
@@ -28,8 +28,8 @@ const Bookdetails = () => {
     };
     const books = useLoaderData();
     const { id } = useParams()
-    const book = books.find(book => book.bookId == id);
-    console.log(book);
+    const idInt = parseInt(id)
+    const book = books.find(book => book.bookId === idInt);
     return (
         <div className="flex mt-8">
             <div className="bg-base-100 h-[450px] w-[40%] text-center rounded-xl">

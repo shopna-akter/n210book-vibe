@@ -1,0 +1,65 @@
+{
+    "books": [
+      {
+        "image": "https://example.com/book1.jpg",
+        "bookName": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "category": "Fiction",
+        "tags": ["classic", "literature"],
+        "totalPages": 336,
+        "publisher": "HarperCollins",
+        "yearOfPublishing": 1960,
+        "rating": 4.5,
+        "totalSale": 10000
+      },
+      {
+        "image": "https://example.com/book2.jpg",
+        "bookName": "1984",
+        "author": "George Orwell",
+        "category": "Dystopian",
+        "tags": ["classic", "political"],
+        "totalPages": 328,
+        "publisher": "Secker & Warburg",
+        "yearOfPublishing": 1949,
+        "rating": 4.6,
+        "totalSale": 12000
+      },
+      {
+        "image": "https://example.com/book3.jpg",
+        "bookName": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "category": "Fiction",
+        "tags": ["classic", "romance"],
+        "totalPages": 180,
+        "publisher": "Charles Scribner's Sons",
+        "yearOfPublishing": 1925,
+        "rating": 4.2,
+        "totalSale": 8000
+      },
+      {
+        "image": "https://example.com/book4.jpg",
+        "bookName": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "category": "Romance",
+        "tags": ["classic", "literature"],
+        "totalPages": 279,
+        "publisher": "T. Egerton, Whitehall",
+        "yearOfPublishing": 1813,
+        "rating": 4.4,
+        "totalSale": 9500
+      },
+      {
+        "image": "https://example.com/book5.jpg",
+        "bookName": "Harry Potter and the Philosopher's Stone",
+        "author": "J.K. Rowling",
+        "category": "Fantasy",
+        "tags": ["young adult", "magic"],
+        "totalPages": 352,
+        "publisher": "Bloomsbury",
+        "yearOfPublishing": 1997,
+        "rating": 4.8,
+        "totalSale": 15000
+      }
+    ]
+  }
+  
