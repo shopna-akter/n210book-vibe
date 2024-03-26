@@ -1,0 +1,7 @@
+.active {
+    border: 2px solid rgba(0, 128, 0, 0.541);
+    border-radius: 5px;
+    padding: 5px;
+    color: green;
+    line-height: initial;
+}
