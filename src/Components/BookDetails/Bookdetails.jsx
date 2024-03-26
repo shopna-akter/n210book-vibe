@@ -2,25 +2,27 @@ import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { saveBookApplication, saveReadBookApplication } from "../utility/Utility";
 const Bookdetails = () => {
     const [readClicked, setReadClicked] = useState(false);
     const [wishlistClicked, setWishlistClicked] = useState(false);
     const handleReadClick = () => {
+        saveReadBookApplication(id)
         if (!readClicked) {
             toast.success('added in read List');
             setReadClicked(true);
         }
-        else{
+        else {
             toast.error('already in read list')
         }
     };
-
     const handleWishlistClick = () => {
+        saveBookApplication(id)
         if (!wishlistClicked) {
             toast.success('added in wishlist');
             setWishlistClicked(true);
         }
-        else{
+        else {
             toast.error('already in wishlist')
         }
     };
