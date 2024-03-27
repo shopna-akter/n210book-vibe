@@ -5,7 +5,7 @@ const Book = ({ book }) => {
         <div>
             <Link to={`/Book/${book.bookId}`}>
                 <div className="card border bg-base-100 shadow-xl">
-                    <figure><img src={book.image} className='h-80' alt="Shoes" /></figure>
+                    <figure><img src={book.image} className='h-80 mt-4 lg:mt-0' alt="Shoes" /></figure>
                     <div className="card-body text-left">
                         <h2 className="card-title text-green-600 gap-4 flex">{book.tags.map((tag, index) => (
                             <span key={index} className="px-4 py-1">

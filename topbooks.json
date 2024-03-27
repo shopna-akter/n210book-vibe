@@ -1,5 +1,4 @@
-{
-    "books": [
+[
       {
         "image": "https://example.com/book1.jpg",
         "bookName": "To Kill a Mockingbird",
@@ -60,6 +59,5 @@
         "rating": 4.8,
         "totalSale": 15000
       }
-    ]
-  }
+]
   
