@@ -6,6 +6,7 @@ const Navbar = () => {
         <NavLink className='text-xl font-bold mr-2' activeClassName="active" to='/ListedBooks'>ListedBooks</NavLink>
         <NavLink className='text-xl font-bold mr-2' activeClassName="active" to='/PagesToRead'>PagesToRead</NavLink>
         <NavLink to='/TopBooks' activeClassName="active" className='text-xl font-bold mr-2'>TopBooks</NavLink>
+        <NavLink to='/AboutUs' activeClassName="active" className='text-xl font-bold'>About Us</NavLink>
     </>
     return (
         <div>
@@ -19,7 +20,7 @@ const Navbar = () => {
                             {navlink}
                         </ul>
                     </div>
-                    <h1 className="text-2xl">Book Vibe</h1>
+                    <h1 className="text-2xl font-bold">Book Vibe</h1>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

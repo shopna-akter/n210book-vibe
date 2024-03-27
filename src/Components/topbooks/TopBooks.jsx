@@ -6,8 +6,8 @@ const BookCard = () => {
   return (
     <div>
       {topBooks.map((book) => (
-        <div key={book.bookId} className="card card-side mb-8 bg-base-100">
-          <figure><img src={book.image} className="h-72 w-48" alt="Book" /></figure>
+        <div key={book.bookId} className="card border-2 card-side mb-8 bg-base-100">
+          <img src={book.image} className="h-72 my-10 w-48 lg:ml-12" alt="Book" />
           <div className="card-body text-left">
             <h2 className="card-title mb-0 flex-grow">{book.bookName}</h2>
             <p>By : {book.author}</p>
@@ -21,9 +21,10 @@ const BookCard = () => {
               }</h1>
               <h1 className="flex gap-1"><img src="/public/Frame (6).png" alt="" /> Year of publishing : {book.yearOfPublishing}</h1>
             </div>
-            <div className="flex gap-1">
-              <h1 className="flex gap-1"><img src="/public/Frame (7).png" alt="" />Publisher : {book.publisher}</h1>
-              <h1 className="flex gap-1 "><img src="/public/Frame (8).png" alt="" />Page : {book.totalPages}</h1>
+            <div className="lg:flex gap-2 flex-wrap">
+              <h1 className="flex gap-2 pb-1"><img src="/public/Frame (7).png" alt="" />Publisher : {book.publisher}</h1>
+              <h1 className="flex gap-2 pb-1"><img src="/public/Frame (8).png" alt="" />Page : {book.totalPages}</h1>
+              <h1 className="flex gap-2 pb-1"><img src="/public/Frame (8).png" alt="" />TotalSale : {book.totalSale}</h1>
             </div>
             <div className="flex gap-2 mt-3 lg:gap-4">
               <button className="text-[#328EFF] p-2 rounded-3xl bg-[#328eff1c]">Category : {book.category}</button>
