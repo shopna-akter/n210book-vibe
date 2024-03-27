@@ -1,5 +1,12 @@
 const getStoredBooksApplication = () => {
-    const storedJobApplication = localStorage.getItem('book-application' || 'read-application');
+    const storedJobApplication = localStorage.getItem('book-application');
+    if(storedJobApplication){
+        return JSON.parse(storedJobApplication)
+    }
+    return []
+};
+const getStoredReadBooksApplication = () => {
+    const storedJobApplication = localStorage.getItem('read-application');
     if(storedJobApplication){
         return JSON.parse(storedJobApplication)
     }
@@ -15,7 +22,7 @@ const saveBookApplication = id => {
     }
 };
 const saveReadBookApplication = id => {
-    const storedWishlistBooks = getStoredBooksApplication();
+    const storedWishlistBooks = getStoredReadBooksApplication();
     const exists = storedWishlistBooks.find(bookId => bookId === id)
     if(!exists){
         storedWishlistBooks.push(id)
@@ -23,4 +30,4 @@ const saveReadBookApplication = id => {
     }
 };
 
-export { getStoredBooksApplication, saveReadBookApplication, saveBookApplication };
+export { getStoredBooksApplication, getStoredReadBooksApplication , saveReadBookApplication, saveBookApplication };
