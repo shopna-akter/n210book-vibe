@@ -8,6 +8,7 @@ const Bookdetails = () => {
     const [wishlistClicked, setWishlistClicked] = useState(false);
     const handleReadClick = () => {
         saveReadBookApplication(idInt)
+        handleWishlistClick(false)
         if (!readClicked) {
             toast.success('added in read List');
             setReadClicked(true);
@@ -16,16 +17,25 @@ const Bookdetails = () => {
             toast.error('already in read list')
         }
     };
-    const handleWishlistClick = () => {
-        saveBookApplication(idInt)
-        if (!wishlistClicked) {
-            toast.success('added in wishlist');
-            setWishlistClicked(true);
+
+    const handleWishlistClick = clicked => {
+        if (readClicked) {
+            toast.error('already added in read list');
+            return;
         }
-        else {
-            toast.error('already in wishlist')
+    
+        if (clicked && !wishlistClicked) {
+            saveBookApplication(idInt, true); // Add to wishlist
+            setWishlistClicked(true);
+            toast.success('added in wishlist');
+        } else if (wishlistClicked) {
+            toast.error('already in wishlist');
         }
     };
+    
+    
+    
+
     const books = useLoaderData();
     const { id } = useParams()
     const idInt = parseInt(id)

@@ -50,9 +50,30 @@ const ListedBooks = () => {
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     {readBooks.map(book => (
                         <div key={book.bookId}>
-                            <h2>{book.title}</h2>
-                            <p>Author: {book.author}</p>
-
+                            <div key={book.bookId} className="card card-side mb-8 bg-base-100">
+                                <img src={book.image} className="h-72 mt-8 w-48" alt="Movie" />
+                                <div className="card-body text-left">
+                                    <h2 className="card-title mb-0 flex-grow">{book.bookName}</h2>
+                                    <p>By : {book.author}</p>
+                                    <div className="flex gap-4 mb-4">
+                                        <h1><span className="mr-12 font-bold">#Tags</span>{
+                                            book.tags.map((tag, index) => (
+                                                <span key={index} className="px-4 text-green-500 py-1 font-bold  ">
+                                                    {tag}
+                                                </span>
+                                            ))
+                                        }</h1>
+                                        <h1 className="flex gap-1"><img src="/public/Frame (6).png" alt="" /> Year of publishing : {book.yearOfPublishing}</h1>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <h1 className="flex gap-2 font-extralight"><img src="/public/Frame (7).png" alt="" />Publisher : {book.publisher}</h1>
+                                        <h1 className="flex gap-2 font-extralight"><img src="/public/Frame (8).png" alt="" />Page : {book.totalPages}</h1>
+                                    </div>
+                                    <div className="card-actions justify-end">
+                                        <button className="btn btn-primary">Watch</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -61,22 +82,23 @@ const ListedBooks = () => {
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     {wishBooks.map(book => (
                         <div key={book.bookId} className="card card-side mb-8 bg-base-100">
-                            <figure><img src={book.image} className="h-72 w-48" alt="Movie" /></figure>
+                            <img src={book.image} className="h-72 w-48" alt="Movie" />
                             <div className="card-body text-left">
-                                <h2 className="card-title">{book.bookName}</h2>
-                                    <p>By : {book.author}</p>
+                                <h2 className="card-title mb-0 flex-grow">{book.bookName}</h2>
+                                <p>By : {book.author}</p>
                                 <div className="flex gap-4">
-                                    <h1><span className="mr-12 text-green-500 font-bold">#Tags</span>{
+                                    <h1><span className="mr-12  font-bold">#Tags</span>{
                                         book.tags.map((tag, index) => (
-                                            <span key={index} className="px-4 py-1 font-bold  ">
+                                            <span key={index} className="px-4 text-green-500 py-1 font-bold  ">
                                                 {tag}
                                             </span>
                                         ))
                                     }</h1>
                                     <h1 className="flex gap-1"><img src="/public/Frame (6).png" alt="" /> Year of publishing : {book.yearOfPublishing}</h1>
                                 </div>
-                                <div>
-                                    
+                                <div className="flex gap-2">
+                                    <h1 className="flex gap-2 font-extralight"><img src="/public/Frame (7).png" alt="" />Publisher : {book.publisher}</h1>
+                                    <h1 className="flex gap-2 font-extralight"><img src="/public/Frame (8).png" alt="" />Page : {book.totalPages}</h1>
                                 </div>
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-primary">Watch</button>
