@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import { getStoredBooksApplication, getStoredReadBooksApplication } from "../utility/Utility";
+import { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ListedBooks = () => {
-    const books = useLoaderData()
-    const [wishBooks, setWishBooks] = useState([])
-    const [readBooks, setReadBooks] = useState([])
+    const books = useLoaderData();
+    const [wishBooks, setWishBooks] = useState([]);
+    const [sortedWishBooks, setSortedWishBooks] = useState([]);
+    const [sortBy, setSortBy] = useState(null); // State to hold the selected sorting criteria
+
     useEffect(() => {
         const storedId = getStoredBooksApplication();
         if (books.length > 0) {
@@ -13,12 +15,16 @@ const ListedBooks = () => {
             for (const id of storedId) {
                 const book = books.find(book => book.bookId === id);
                 if (book) {
-                    booksWish.push(book)
+                    booksWish.push(book);
                 }
             }
-            setWishBooks(booksWish)
+            setWishBooks(booksWish);
+            setSortedWishBooks(booksWish); // Initialize sortedWishBooks with unsorted wishlist books
         }
-    }, []);
+    }, [books]);
+
+    const [readBooks, setReadBooks] = useState([]); // State to hold read books
+
     useEffect(() => {
         const storedId = getStoredReadBooksApplication();
         if (books.length > 0) {
@@ -26,23 +32,42 @@ const ListedBooks = () => {
             for (const id of storedId) {
                 const book = books.find(book => book.bookId === id);
                 if (book) {
-                    booksRead.push(book)
+                    booksRead.push(book);
                 }
             }
-            setReadBooks(booksRead)
+            setReadBooks(booksRead);
         }
-    }, []);
+    }, [books]);
+
+    // Function to sort wishlist books based on selected criteria
+    const sortWishBooks = (criteria) => {
+        if (criteria === sortBy) {
+            // If already sorted by the same criteria, reverse the order
+            setSortedWishBooks(prevState => [...prevState].reverse());
+        } else {
+            setSortBy(criteria);
+            if (criteria === "rating") {
+                // Sort by rating
+                setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.rating - a.rating));
+            } else if (criteria === "pages") {
+                // Sort by number of pages
+                setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.totalPages - a.totalPages));
+            } else if (criteria === "year") {
+                // Sort by published year
+                setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.yearOfPublishing - a.yearOfPublishing));
+            }
+        }
+    };
 
     return (
         <div className="text-center">
-            <div className="w-full bg-base-200 text-center pt-12 h-36">
-                <h1 className="text-2xl font-bold">Books : { }</h1>
-            </div>
+            {/* Sorting dropdown */}
             <div tabIndex={0} role="button" className="dropdown btn btn-success dropdown-right bg-[#23BE0A]">
                 <div tabIndex={0} role="button" className="m-1 mt-4 flex text-white">Sort By <img src="/public/Frame (2).svg" className="pb-2 pl-2" alt="" /></div>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow rounded-box w-52">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
+                    <li onClick={(e) => { e.preventDefault(); sortWishBooks("rating"); }}><a>Rating</a></li>
+                    <li onClick={(e) => { e.preventDefault(); sortWishBooks("pages"); }}><a>Number of Pages</a></li>
+                    <li onClick={(e) => { e.preventDefault(); sortWishBooks("year"); }}><a>Published Year</a></li>
                 </ul>
             </div>
             <div role="tablist" className="tabs tabs-lifted">
@@ -72,8 +97,8 @@ const ListedBooks = () => {
                                     <div className="flex gap-2 mt-3 lg:gap-4">
                                         <button className="text-[#328EFF] p-2 rounded-3xl bg-[#328eff1c]">Category : {book.category}</button>
                                         <button className="text-[#FFAC33] p-2 rounded-3xl bg-[#FFAC331c]">Rating : {book.rating}</button>
-                                        <button className="bg-[#23BE0A] btn-success btn
-                                    hover:bg-[#23BE0A] text-white">View Details</button>
+                                        <Link to={`/Book/${book.bookId}`} className="bg-[#23BE0A] btn-success btn
+                                    hover:bg-[#23BE0A] text-white">View Details</Link>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +108,7 @@ const ListedBooks = () => {
 
                 <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Wishlist Books" checked />
                 <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
-                    {wishBooks.map(book => (
+                    {sortedWishBooks.map(book => (
                         <div key={book.bookId} className="card card-side mb-8 bg-base-100">
                             <figure><img src={book.image} className="h-72 w-48" alt="Movie" /></figure>
                             <div className="card-body text-left">
@@ -106,8 +131,9 @@ const ListedBooks = () => {
                                 <div className="flex gap-2 mt-3 lg:gap-4">
                                     <button className="text-[#328EFF] p-2 rounded-3xl bg-[#328eff1c]">Category : {book.category}</button>
                                     <button className="text-[#FFAC33] p-2 rounded-3xl bg-[#FFAC331c]">Rating : {book.rating}</button>
-                                    <button className="bg-[#23BE0A] btn-success btn
-                                    hover:bg-[#23BE0A] text-white">View Details</button>
+                                    <Link to={`/Book/${book.bookId}`} className="bg-[#23BE0A]
+                                     btn-success btn
+                                    hover:bg-[#23BE0A] text-white">View Details</Link>
                                 </div>
                             </div>
                         </div>
@@ -120,4 +146,3 @@ const ListedBooks = () => {
 };
 
 export default ListedBooks;
-
