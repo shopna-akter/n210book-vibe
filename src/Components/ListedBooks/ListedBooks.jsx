@@ -6,7 +6,7 @@ const ListedBooks = () => {
     const books = useLoaderData();
     const [wishBooks, setWishBooks] = useState([]);
     const [sortedWishBooks, setSortedWishBooks] = useState([]);
-    const [sortBy, setSortBy] = useState(null); // State to hold the selected sorting criteria
+    const [sortBy, setSortBy] = useState(null); 
 
     useEffect(() => {
         const storedId = getStoredBooksApplication();
@@ -19,11 +19,11 @@ const ListedBooks = () => {
                 }
             }
             setWishBooks(booksWish);
-            setSortedWishBooks(booksWish); // Initialize sortedWishBooks with unsorted wishlist books
+            setSortedWishBooks(booksWish); 
         }
     }, [books]);
 
-    const [readBooks, setReadBooks] = useState([]); // State to hold read books
+    const [readBooks, setReadBooks] = useState([]);
 
     useEffect(() => {
         const storedId = getStoredReadBooksApplication();
@@ -39,21 +39,16 @@ const ListedBooks = () => {
         }
     }, [books]);
 
-    // Function to sort wishlist books based on selected criteria
     const sortWishBooks = (criteria) => {
         if (criteria === sortBy) {
-            // If already sorted by the same criteria, reverse the order
             setSortedWishBooks(prevState => [...prevState].reverse());
         } else {
             setSortBy(criteria);
             if (criteria === "rating") {
-                // Sort by rating
                 setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.rating - a.rating));
             } else if (criteria === "pages") {
-                // Sort by number of pages
                 setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.totalPages - a.totalPages));
             } else if (criteria === "year") {
-                // Sort by published year
                 setSortedWishBooks(prevState => [...prevState].sort((a, b) => b.yearOfPublishing - a.yearOfPublishing));
             }
         }
