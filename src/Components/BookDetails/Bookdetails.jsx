@@ -7,29 +7,26 @@ const Bookdetails = () => {
     const [readClicked, setReadClicked] = useState(false);
     const [wishlistClicked, setWishlistClicked] = useState(false);
     const handleReadClick = () => {
-        if (!readClicked) {
+        if (!readClicked && !wishlistClicked) {
             saveReadBookApplication(idInt);
-            handleWishlistClick(false);
-            toast.success('added in read List');
             setReadClicked(true);
+            toast.success('Added to read list');
+        } else if (wishlistClicked) {
+            toast.error('Already in wishlist');
         } else {
-            toast.error('already in read list');
+            toast.error('Already in read list');
         }
     };
     
-
-    const handleWishlistClick = clicked => {
-        if (readClicked) {
-            toast.error('already added in read list');
-            return;
-        }
-    
-        if (clicked && !wishlistClicked) {
+    const handleWishlistClick = () => {
+        if (!readClicked && !wishlistClicked) {
             saveBookApplication(idInt, true); // Add to wishlist
             setWishlistClicked(true);
-            toast.success('added in wishlist');
-        } else if (wishlistClicked) {
-            toast.error('already in wishlist');
+            toast.success('Added to wishlist');
+        } else if (readClicked) {
+            toast.error('Already added to read list');
+        } else {
+            toast.error('Already in wishlist');
         }
     };
     

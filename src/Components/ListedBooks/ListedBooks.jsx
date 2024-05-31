@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const ListedBooks = () => {
     const books = useLoaderData();
+    // eslint-disable-next-line no-unused-vars
     const [wishBooks, setWishBooks] = useState([]);
     const [sortedWishBooks, setSortedWishBooks] = useState([]);
     const [sortBy, setSortBy] = useState(null); 
